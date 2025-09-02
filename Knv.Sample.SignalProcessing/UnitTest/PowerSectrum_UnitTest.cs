@@ -6,11 +6,10 @@ namespace Knv.Sample.SignalProcessing.UnitTest
     using System.Diagnostics;
     using NUnit.Framework;
 
-
+    //commit test
     [TestFixture]
     public class PowerSectrum_UnitTest
     {
-
         [Test]
         public void PowerSpectrumWithCustomLabel()
         {

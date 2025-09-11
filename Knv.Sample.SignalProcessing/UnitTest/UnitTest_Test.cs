@@ -42,8 +42,8 @@ namespace Knv.Sample.SignalProcessing.UnitTest
             Assert.AreEqual(224969.54440675842d, impValue);
 
             Complex current = sourceRMS/imp;
-            double currrentValue = Complex.Abs(current);
-            Assert.AreEqual(1.5713238026603759E-06, currrentValue);
+            double currentValue = Complex.Abs(current);
+            Assert.AreEqual(1.5713238026603759E-06, currentValue);
 
             var phase = Math.Atan2(current.Imaginary,current.Real) * 180/Math.PI;
             Assert.AreEqual(45.027903336789905d, phase);
@@ -70,8 +70,8 @@ namespace Knv.Sample.SignalProcessing.UnitTest
             Console.WriteLine(@"Impedance Value: " + impValue.ToString());
 
             Complex current = sourceRMS / imp;
-            double currrentValue = Complex.Abs(current);
-            Console.WriteLine(@"Current Value: " + currrentValue.ToString());
+            double currentValue = Complex.Abs(current);
+            Console.WriteLine(@"Current Value: " + currentValue.ToString());
 
             var phase = Math.Atan2(current.Imaginary, current.Real) * (180 / Math.PI);
             Console.WriteLine(@"Phase: " + phase.ToString());
@@ -96,8 +96,8 @@ namespace Knv.Sample.SignalProcessing.UnitTest
             Debug.WriteLine(@"Impedance Value: " +  string.Format(new SuffixFormatter(), "{0:sfx}Ω", impValue));
 
             Complex current = sourceRMS / imp;
-            double currrentValue = Complex.Abs(current);
-            Debug.WriteLine(@"Current Value: " + string.Format(new SuffixFormatter(), "{0:sfx}A", currrentValue));
+            double currentValue = Complex.Abs(current);
+            Debug.WriteLine(@"Current Value: " + string.Format(new SuffixFormatter(), "{0:sfx}A", currentValue));
 
             var phase = Math.Atan2(current.Imaginary, current.Real) * (180 / Math.PI);
             Debug.WriteLine(@"Phase: "+ string.Format("{0:g3}°", phase));

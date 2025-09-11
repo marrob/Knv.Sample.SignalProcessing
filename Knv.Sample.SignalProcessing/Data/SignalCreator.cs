@@ -134,8 +134,5 @@ namespace Knv.Sample.SignalProcessing.Data
    
             waveforms.Add(wave);
         }
-
-
-    
     }
 }

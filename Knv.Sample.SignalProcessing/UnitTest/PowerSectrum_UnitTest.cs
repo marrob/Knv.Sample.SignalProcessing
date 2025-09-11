@@ -8,30 +8,32 @@ namespace Knv.Sample.SignalProcessing.UnitTest
 
     //commit test
     [TestFixture]
-    public class PowerSectrum_UnitTest
+    public class PowerSpectrum_UnitTest
     {
         [Test]
         public void PowerSpectrumWithCustomLabel()
         {
 
-            var wavestore = new WaveformStorage();
+            var waveStore = new WaveformStorage();
 
-            SignalCreator.TestSignal(wavestore.Waveforms);
-            Waveform waveform = wavestore.Waveforms[0];
-            var complexSignal = waveform.FftBruteFroce();
-            var sepectrum = waveform.GetPowerSpectrum();
+            SignalCreator.TestSignal(waveStore.Waveforms);
+            Waveform waveform = waveStore.Waveforms[0];
+            var complexSignal = waveform.FftBruteForce();
+            var spectrum = waveform.GetPowerSpectrum();
 
 
             var swf = new SignalWiewerForm();
-            /*---------*/
+            //---
             swf.Chart.Series.Clear();
             swf.Chart.Titles.Clear();
             swf.Chart.Titles.Add("Power spectrum");
             swf.Chart.Legends.Clear();
             var series = swf.Chart.Series.Add("");
+            
             series.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            for (int i = 0; i < complexSignal.Length; i++)
-                series.Points.Add(sepectrum[i]);
+           
+            for (int i = 0; i < spectrum.Length; i++)
+                series.Points.Add(spectrum[i]);
 
             var bins = waveform.GetFftBins();
 

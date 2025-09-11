@@ -26,7 +26,7 @@ namespace Knv.Sample.SignalProcessing.UnitTest
 
                 SignalCreator.TestSignal(wavestore.Waveforms);
                 Waveform  waveform = wavestore.Waveforms[0];
-                var complexSignal = waveform.FftBruteFroce();
+                var complexSignal = waveform.FftBruteForce();
                 var sepectrum = waveform.GetPowerSpectrum();
 
                 /*---------*/

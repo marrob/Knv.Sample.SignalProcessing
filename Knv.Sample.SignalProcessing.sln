@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.12.35521.163
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knv.Sample.SignalProcessing", "Knv.Sample.SignalProcessing\Knv.Sample.SignalProcessing.csproj", "{8D63D1E5-D0E4-4080-8299-FC3FAF5F404B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knv.Sample.SignalProcessing", "Knv.Sample.SignalProcessing\Knv.Sample.SignalProcessing.csproj", "{2378AA74-89F0-4EAB-BCB0-84961563EFCE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{8D63D1E5-D0E4-4080-8299-FC3FAF5F404B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8D63D1E5-D0E4-4080-8299-FC3FAF5F404B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8D63D1E5-D0E4-4080-8299-FC3FAF5F404B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8D63D1E5-D0E4-4080-8299-FC3FAF5F404B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2378AA74-89F0-4EAB-BCB0-84961563EFCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2378AA74-89F0-4EAB-BCB0-84961563EFCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2378AA74-89F0-4EAB-BCB0-84961563EFCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2378AA74-89F0-4EAB-BCB0-84961563EFCE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

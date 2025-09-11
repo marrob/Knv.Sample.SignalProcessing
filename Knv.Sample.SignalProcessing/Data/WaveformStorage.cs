@@ -51,7 +51,7 @@ namespace Knv.Sample.SignalProcessing.Data
                 }
 
                 wave.YArray = new double[csv.RowCount - row];
-                var yindex = 0;
+                var yIndex = 0;
 
                 for (; row < csv.RowCount; row++)
                 {
@@ -63,7 +63,7 @@ namespace Knv.Sample.SignalProcessing.Data
                     }
                     else if (double.TryParse(cell, out double value) == true)
                     {
-                        wave.YArray[yindex++] = value;
+                        wave.YArray[yIndex++] = value;
                     }
                     else
                     {
@@ -93,7 +93,7 @@ namespace Knv.Sample.SignalProcessing.Data
                 if (wave.DeltaX != 0)
                     properties.Add("DELTAX = " + wave.DeltaX);
 
-                /* properties */
+                // --- properties ---
                 int row = 0;
                 for (; row < properties.Count; row++)
                 {
@@ -112,7 +112,7 @@ namespace Knv.Sample.SignalProcessing.Data
                     }
                 }
 
-                /* YArray */
+                // --- YArray --- 
                 int data_index = 0;
                 for (; data_index < wave.YArray.Length; row++, data_index++)
                 {

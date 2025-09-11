@@ -13,12 +13,12 @@ namespace Knv.Sample.SignalProcessing.UnitTest
     {
 
         [Test]
-        public void MultiplieSingals()
+        public void MultipleSignals()
         {
             var wavestore = new WaveformStorage();
             SignalCreator.CreateSample3(wavestore.Waveforms);
 
-            wavestore.SaveToCsv("D:\\proba.csv");
+            wavestore.SaveToCsv("D:\\char_unit_test_from_signal_processing.csv");
 
             var swf = new SignalWiewerForm();
 

@@ -14,7 +14,7 @@ namespace Knv.Sample.SignalProcessing.Data
 
         public string Name { get; set; }
         public DateTime Timestamp { get; set; }
-        public double Offeset { get; set;}
+        public double Offset { get; set;}
 
         /// <summary>
         /// A jel frekveciája
@@ -37,23 +37,31 @@ namespace Knv.Sample.SignalProcessing.Data
         {
 
         }
-    
+
 
         /// <summary>
-        /// Brute Forece FFT Calcualtor
+        /// Brute Force diszkrét Fourier-transzformáció (DFT)
         /// </summary>
         /// <returns></returns>
-        public Complex[] FftBruteFroce()
+        public Complex[] FftBruteForce()
         {
             var N = YArray.Length;
+
             var Xre = new double[N];
             var Xim = new double[N];
+            
             var complexArray = new Complex[N];
-            for (int k = 0; k < N; ++k)
-            {
 
-                for (int n = 0; n < N; ++n) Xre[k] += YArray[n] * Math.Cos(n * k * 2 * Math.PI / N);
-                for (int n = 0; n < N; ++n) Xim[k] -= YArray[n] * Math.Sin(n * k * 2 * Math.PI / N);
+            //A külső ciklus (k) végigmegy a kimeneti frekvenciákon
+            //a belső ciklus (n) pedig az időmintákon.
+            for (int k = 0; k < N; k++)
+            {
+                for (int n = 0; n < N; n++)
+                {
+                    var angle = 2 * Math.PI * n * k / N;
+                    Xre[k] += YArray[n] * Math.Cos(angle);
+                    Xim[k] -= YArray[n] * Math.Sin(angle);
+                }
                 complexArray[k] = new Complex(Math.Round(Xre[k], 3), Math.Round(Xim[k], 3));
             }
             return complexArray;
@@ -119,7 +127,7 @@ namespace Knv.Sample.SignalProcessing.Data
                 double _sin = sinTable_16[dft_index & 15];
 
                 Re += x[dft_index] * _cos;
-                Im += x[dft_index] * _sin; ;
+                Im += x[dft_index] * _sin;
 
                 dft_index++;
                 dft_index &= (DFT_LEN - 1);
@@ -130,7 +138,7 @@ namespace Knv.Sample.SignalProcessing.Data
 
         /// <summary>
         /// 
-        /// SmapleRate / SampleLength
+        /// SampleRate / SampleLength
         /// 
         /// SampleRate: 5KHz
         /// SampleLength: 128 p.cs.
@@ -167,11 +175,13 @@ namespace Knv.Sample.SignalProcessing.Data
         /// <returns></returns>
         public double[] GetPowerSpectrum()
         {
-            var complexSignal = FftBruteFroce();
-            var spectrum = new double[complexSignal.Length];
-            var index = 0;
-            foreach (var signal in complexSignal)
-                spectrum[index++] = Complex.Abs(signal);
+            var complexSignal = FftBruteForce();
+            var spectrum = new double[complexSignal.Length / 2];
+            
+            for(int index = 0; index < complexSignal.Length / 2; index++)
+            
+                spectrum[index] = Complex.Abs(complexSignal[index]);
+
             return spectrum;
         }
 
@@ -189,9 +199,4 @@ namespace Knv.Sample.SignalProcessing.Data
     {
 
     }
-
-
-
-
-
 }

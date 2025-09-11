@@ -1,5 +1,4 @@
 ﻿
-
 namespace Knv.Sample.SignalProcessing.Data
 {
     using System.Collections.Generic;
@@ -34,10 +33,10 @@ namespace Knv.Sample.SignalProcessing.Data
         /// </summary>
         private int CalcColumnCount(List<string> lines)
         {
-            var coulmnsCount = 0;
+            var columnsCount = 0;
             for (int rowIndex = 0; rowIndex < lines.Count; rowIndex++)
             {
-                int coulmnIndex = 0;
+                int columnIndex = 0;
                 var row = lines[rowIndex];
                 LineParseStates state = LineParseStates.FIND_DATAFIELD_START_ESCAPE;
 
@@ -57,11 +56,11 @@ namespace Knv.Sample.SignalProcessing.Data
                             {
                                 if (ch == AppConstants.CsvEscape  /*'\"'*/)
                                 {
-                                    coulmnIndex++;
+                                    columnIndex++;
                                     state = LineParseStates.FIND_SEPARATOR;
 
-                                    if (coulmnIndex > coulmnsCount)
-                                        coulmnsCount = coulmnIndex;
+                                    if (columnIndex > columnsCount)
+                                        columnsCount = columnIndex;
                                 }
                                 break;
                             }
@@ -74,7 +73,7 @@ namespace Knv.Sample.SignalProcessing.Data
                     }
                 }
             }
-            return coulmnsCount;
+            return columnsCount;
         }
 
         /// <summary>
@@ -82,13 +81,13 @@ namespace Knv.Sample.SignalProcessing.Data
         /// </summary>
         public void Parser(List<string> lines, ref string[,] table)
         {
-            var coulmnsCount = 0;
+            var columnsCount = 0;
 
             for (int rowIndex = 0; rowIndex < lines.Count; rowIndex++)
             {
-                int coulmnIndex = 0;
+                int columnIndex = 0;
                 var row = lines[rowIndex];
-                string datafield = string.Empty;
+                string dataField = string.Empty;
                 LineParseStates state = LineParseStates.FIND_DATAFIELD_START_ESCAPE;
 
                 for (int chIndex = 0; chIndex < row.Length; chIndex++)
@@ -106,16 +105,16 @@ namespace Knv.Sample.SignalProcessing.Data
                         case LineParseStates.IN_DATAFIELD:
                             {
                                 if (ch != '\"')
-                                    datafield += row[chIndex];
+                                    dataField += row[chIndex];
                                 if (ch == '\"')
                                 {
-                                    table[rowIndex, coulmnIndex] = datafield;
-                                    coulmnIndex++;
-                                    datafield = string.Empty;
+                                    table[rowIndex, columnIndex] = dataField;
+                                    columnIndex++;
+                                    dataField = string.Empty;
                                     state = LineParseStates.FIND_SEPARATOR;
 
-                                    if (coulmnIndex > coulmnsCount)
-                                        coulmnsCount = coulmnIndex;
+                                    if (columnIndex > columnsCount)
+                                        columnsCount = columnIndex;
                                 }
                                 break;
                             }
@@ -139,30 +138,29 @@ namespace Knv.Sample.SignalProcessing.Data
         /// <returns></returns>
         public ImportResult Load(string path)
         {
-
-            /*--- Stopper Start ---*/
+            // --- Stopper Start ---
             var stopwatch = new Stopwatch();
             stopwatch.Restart();
 
-            /*--- All read in  ---*/
+            // --- All read in  ---
             var lines = Read(path);
 
-            /*--- Get current row and coulmn counts ---*/
+            // --- Get current row and column counts ---
             var rows = CalcRowCount(lines);
             var columns = CalcColumnCount(lines);
 
-            /*--- array allocation ---*/
+            // --- array allocation ---
             string[,] table = new string[rows, columns];
 
-            /*--- parsing... ---*/
+            // --- parsing... ---
             Parser(lines, ref table);
 
-            /*--- Stopper stop ---*/
+            // --- Stopper stop ---
             stopwatch.Stop();
 #if DEBUG
             Debug.WriteLine("CsvImport-> Elapsed Time:" + stopwatch.ElapsedMilliseconds.ToString() + "ms");
 #endif
-            /* --- Create Result ---*/
+            // --- Create Result ---
             return new ImportResult(rows, columns, stopwatch.ElapsedMilliseconds, table);
 
         }

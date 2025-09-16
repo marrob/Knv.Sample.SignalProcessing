@@ -19,7 +19,7 @@ namespace Knv.Sample.SignalProcessing.Data
         }
 
         /// <summary>
-        /// 
+        /// Load columns from CSV file into Wavefrom collection.
         /// </summary>
         public void LoadCsv(string path)
         {

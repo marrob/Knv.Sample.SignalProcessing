@@ -14,12 +14,11 @@ namespace Knv.Sample.SignalProcessing.UnitTest
         public void PowerSpectrumWithCustomLabel()
         {
 
-            var waveStore = new WaveformStorage();
+            var wfs = new WaveformStorage();
+            wfs.Waveforms.Add(SignalTools.Generator(length: 128, frequency: 1000, sampleRate: 5000));
 
-            SignalCreator.TestSignal(waveStore.Waveforms);
-            Waveform waveform = waveStore.Waveforms[0];
-            var complexSignal = waveform.FftBruteForce();
-            var spectrum = waveform.GetPowerSpectrum();
+            var complexSignal = wfs.Waveforms[0].FftBruteForce();
+            var spectrum = wfs.Waveforms[0].GetPowerSpectrum();
 
 
             var swf = new SignalWiewerForm();
@@ -35,7 +34,7 @@ namespace Knv.Sample.SignalProcessing.UnitTest
             for (int i = 0; i < spectrum.Length; i++)
                 series.Points.Add(spectrum[i]);
 
-            var bins = waveform.GetFftBins();
+            var bins = wfs.Waveforms[0].GetFftBins();
 
             var width = swf.Chart.Width;
             Debug.Write("Width:" + width);
@@ -57,12 +56,12 @@ namespace Knv.Sample.SignalProcessing.UnitTest
         public void PowerSpectrumWithCustomLabelx()
         {
 
-            var waveStore = new WaveformStorage();
+            var wfs = new WaveformStorage();
+            wfs.Waveforms.Add(SignalTools.Generator(length: 128, frequency: 1000, sampleRate: 5000));
 
-            SignalCreator.TestSignal(waveStore.Waveforms);
-            Waveform waveform = waveStore.Waveforms[0];
-            var complexSignal = waveform.FftBruteForce();
-            var spectrum = waveform.GetPowerSpectrum();
+
+            var complexSignal = wfs.Waveforms[0].FftBruteForce();
+            var spectrum = wfs.Waveforms[0].GetPowerSpectrum();
 
 
             var swf = new SignalWiewerForm();
@@ -78,7 +77,7 @@ namespace Knv.Sample.SignalProcessing.UnitTest
             for (int i = 0; i < spectrum.Length; i++)
                 series.Points.Add(spectrum[i]);
 
-            var bins = waveform.GetFftBins();
+            var bins = wfs.Waveforms[0].GetFftBins();
 
             var width = swf.Chart.Width;
             Debug.Write("Width:" + width);

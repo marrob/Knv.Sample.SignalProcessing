@@ -21,13 +21,11 @@ namespace Knv.Sample.SignalProcessing.UnitTest
             {
                 var form = new FFTViewerForm();
                 var form2 = new SignalWiewerForm();
+                var wfs = new WaveformStorage();
 
-                var wavestore = new WaveformStorage();
-
-                SignalCreator.TestSignal(wavestore.Waveforms);
-                Waveform  waveform = wavestore.Waveforms[0];
-                var complexSignal = waveform.FftBruteForce();
-                var sepectrum = waveform.GetPowerSpectrum();
+                wfs.Waveforms.Add(SignalTools.Generator(length:128, frequency: 1000, sampleRate:5000));
+                var complexSignal = wfs.Waveforms[0].FftBruteForce();
+                var sepectrum = wfs.Waveforms[0].GetPowerSpectrum();
 
                 /*---------*/
                 var chart = form.chart1;
@@ -36,8 +34,8 @@ namespace Knv.Sample.SignalProcessing.UnitTest
                 chart.Titles.Add("Signals");
                 var series = chart.Series.Add("");
                 series.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-                for (int i = 0; i < waveform.YArray.Length; i++)
-                    series.Points.Add(waveform.YArray[i]);
+                for (int i = 0; i < wfs.Waveforms[0].YArray.Length; i++)
+                    series.Points.Add(wfs.Waveforms[0].YArray[i]);
               
                 /*---------*/
                 chart = form.chart2;
@@ -66,10 +64,10 @@ namespace Knv.Sample.SignalProcessing.UnitTest
                 chart.Titles.Add("Power spectrum");
                 series = chart.Series.Add("");
                 series.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-                for (int i = 0; i < complexSignal.Length; i++)
+                for (int i = 0; i < sepectrum.Length; i++)
                     series.Points.Add(sepectrum[i]);
 
-                var bins = waveform.GetFftBins();
+                var bins = wfs.Waveforms[0].GetFftBins();
 
                 for (int i = 0; i < bins.Length; i++)
                 {

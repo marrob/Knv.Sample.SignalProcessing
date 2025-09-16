@@ -8,56 +8,37 @@ namespace Knv.Sample.SignalProcessing.Data
     using System.Linq;
     using System.Text;
 
-    public class SignalCreator
+    public class SignalTools
     {
-
-        public SignalCreator()
+        public static Waveform Generator(int length, double frequency, double sampleRate)
         {
-
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        public static void CreateSample1(WaveformCollection waveforms)
-        {
-            Generator(256/*p.cs*/, 5.0/*Hz*/, 100.0/*Hz*/, waveforms);
-        }
-
-        public static void Generator(int length, double frequency, double sampleRate, WaveformCollection waveforms)
-        {
-            /*
-            * This data was generated using the function definition:
-            *
-            *   sin(2 * pi * freq * time)
-            *   
-            *   freq = 5Hz
-            *   sampling rate = 100Hz
-            *   
-            *   0. => sin( 2 * pi  0/100 * 5) = 0.
-            *   1. => sin( 2 * pi  1/100 * 5) = 0.3090
-            *   2. => sin( 2 * pi  1/100 * 5) = 0.5877 
-            *
-            * */
-
+            
+            // This data was generated using the function definition:
+            //
+            //   sin(2 * pi * freq * time)
+            //   
+            //   freq = 5Hz
+            //   sampling rate = 100Hz
+            //   
+            //   0. => sin( 2 * pi  0/100 * 5) = 0.
+            //   1. => sin( 2 * pi  1/100 * 5) = 0.3090
+            //   2. => sin( 2 * pi  1/100 * 5) = 0.5877 
+            //
+            
             var wave = new Waveform();
-            wave.Name = "wave1";
-            wave.Freq = frequency; /*Hz*/
-            wave.DeltaX = 1 / sampleRate; /*sec*/
-
+            wave.Name = $"Generated Sine Wave: f{frequency}";
+            wave.Freq = frequency; //Hz
+            wave.DeltaX = 1 / sampleRate; //sec
             wave.Timestamp = new DateTime(1985, 01, 23, 07, 30, 33);
-
             wave.YArray = new double[length];
 
             for (int pointIndex = 0; pointIndex < length; pointIndex++)
-            {
                 wave.YArray[pointIndex] = Math.Sin(2 * Math.PI * (pointIndex / sampleRate) * frequency);
-            }
 
             for (int i = 0; i < wave.YArray.Length; i++)
                 wave.YArray[i] = Math.Round(wave.YArray[i], AppConstants.RoundDigits);
 
-            waveforms.Add(wave);
-
+            return wave;
         }
 
         /// <summary>
@@ -73,15 +54,7 @@ namespace Knv.Sample.SignalProcessing.Data
             waveforms.Add(wave1);
         }
 
-        /// </summary>
-        public static void TestSignal(WaveformCollection waveforms)
-        {
-            Generator(
-                        length: 128/*p.cs*/,
-                        frequency: 1000 /*Hz*/, 
-                        sampleRate: 5000 /*Hz*/, 
-                        waveforms: waveforms);
-        }
+
 
         /// <summary>
         /// 

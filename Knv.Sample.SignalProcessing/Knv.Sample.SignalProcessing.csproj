@@ -57,11 +57,18 @@
     <Compile Include="Common\BinarySuffixes.cs" />
     <Compile Include="Common\SuffixFormatter.cs" />
     <Compile Include="Common\UnitTest_Suffix.cs" />
-    <Compile Include="Data\SignalCreator.cs" />
-    <Compile Include="Data\UinitTest_Data.cs" />
     <Compile Include="Data\CsvImport.cs" />
-    <Compile Include="Data\WaveformStorage.cs" />
+    <Compile Include="Data\SignalTools.cs" />
+    <Compile Include="Data\UinitTest_Data.cs" />
     <Compile Include="Data\Waveform.cs" />
+    <Compile Include="Data\WaveformCollection.cs" />
+    <Compile Include="Data\WaveformStorage.cs" />
+    <Compile Include="Data\WaveFormStorageViewerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Data\WaveFormStorageViewerForm.Designer.cs">
+      <DependentUpon>WaveFormStorageViewerForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -87,6 +94,9 @@
     <Compile Include="UnitTest\SignalGen_UnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitTest\UnitTest_Test.cs" />
+    <EmbeddedResource Include="Data\WaveFormStorageViewerForm.resx">
+      <DependentUpon>WaveFormStorageViewerForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UnitTest\FFTViewerForm.resx">
       <DependentUpon>FFTViewerForm.cs</DependentUpon>
     </EmbeddedResource>

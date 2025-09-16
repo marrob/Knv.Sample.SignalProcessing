@@ -16,7 +16,7 @@ namespace Knv.Sample.SignalProcessing.UnitTest
         public void MultipleSignals()
         {
             var wavestore = new WaveformStorage();
-            SignalCreator.CreateSample3(wavestore.Waveforms);
+            SignalTools.CreateSample3(wavestore.Waveforms);
 
             wavestore.SaveToCsv("D:\\char_unit_test_from_signal_processing.csv");
 

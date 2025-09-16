@@ -1,6 +1,6 @@
-"Name:Current";"Name:Volt"
-"Timestamp:1";"Timestamp:2"
-"SamplingFreq:50";"deltaT:50ns";
+"Name=Current";"Name=Volt"
+"Timestamp=1";"Timestamp=2"
+"SamplingFreq=50";"deltaT=50ns"
 
 "1.1", "1.9"
 "1.2", "1.8"

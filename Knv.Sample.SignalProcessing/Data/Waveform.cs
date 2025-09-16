@@ -194,9 +194,4 @@ namespace Knv.Sample.SignalProcessing.Data
             return 0;
         }
     }
-
-    public class WaveformCollection : BindingList<Waveform>
-    {
-
-    }
 }
